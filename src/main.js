@@ -4,7 +4,7 @@ var app = new Vue(({
         entries: []
     },
     created: function () {
-
+        this.getData();
     },
 
     getData: function () {

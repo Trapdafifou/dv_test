@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Title</title>
+</head>
+<body id="app">
+<div>
+    <form class="form-inline col-md-8 col-md-offset-2" action="">
+        <div class="form-group">
+            <label for="last-name">nom</label>
+            <input id="last-name" type="text" placeholder="ex: Trump">
+        </div>
+        <div class="form-group">
+            <label for="first-name">prénom</label>
+            <input id="first-name" type="text" placeholder="ex: Donald">
+        </div>
+        <div class="form-group">
+            <label for="email">e-mail</label>
+            <input id="email" type="email" placeholder="ex: toto@foobar.com">
+        </div>
+        <div class="form-group">
+            <label for="phone">Tél</label>
+            <input id="phone" type="text" placeholder="ex: 0123456789">
+        </div>
+        <button class="btn btn-success">Valider</button>
+    </form>
+</div>
+<div class="container-fluid col-md-8 col-md-offset-2">
+    <ul class="list-inline" v-for="entrie in entries">
+        <li>{{entrie.firstName}}</li>
+        <li>{{entrie.lastName}}</li>
+        <li>{{entrie.email}}</li>
+        <li>{{entrie.phone}}</li>
+        <li><button class="btn btn-default">X</button></li>
+    </ul>
+</div>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="src/main.js"></script>
+</body>
+</html>

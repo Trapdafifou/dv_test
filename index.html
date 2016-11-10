@@ -37,7 +37,7 @@
             <li v-if="editedItem == item">
                 <div>
                     <form class="form-inline col-md-8 col-md-offset-2"
-                          v-on:submit.prevent="updateMode()">
+                          v-on:submit.prevent="">
                         <div class="form-group">
                             <label for="last-name">nom</label>
                             <input id="last-name" type="text" placeholder="ex: Trump" v-model="lastName">

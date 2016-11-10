@@ -17,23 +17,20 @@ var app = new Vue(({
     methods: {
         getData: function () {
             var localData = localStorage.getItem('entries');
-            if(!localData){
-                localStorage.setItem('entries', '[]')
-            }else {
-                return this.entries = JSON.parse(localData);
-            }
+            if(localData){
+               return this.entries = JSON.parse(localData);
 
+            }
         },
         postData: function () {
             var jsonData = JSON.stringify(this.entries);
             localStorage.setItem('entries', jsonData);
-            console.log(localStorage.getItem('entries'))
+
         },
         deleteData: function (index) {
             this.entries.splice(index, 1);
             var jsonData = JSON.stringify(this.entries);
             localStorage.setItem('entries', jsonData);
-            console.log(localStorage.getItem('entries'))
         },
         updateMode: function (item) {
             this.editedItem = item;
@@ -42,11 +39,12 @@ var app = new Vue(({
             this.firstName = this.entries[item].firstName;
             this.email = this.entries[item].email;
             this.phone = this.entries[item].phone;
-            return;
+
+            this.cachedItem = this.entries[item];
         },
         updateData: function (item) {
 
-            this.cachedItem = this.entries[item];
+
 
             this.entries[item] = {
                 lastName: this.lastName,
@@ -55,12 +53,18 @@ var app = new Vue(({
                 phone: this.phone,
             };
 
-            this.postData()
+            this.postData();
 
             this.lastName = '';
             this.firstName = '';
             this.email = '';
             this.phone = '';
+        },
+        cancelUpdate(item){
+            ;
+            this.entries[item] = this.cachedItem;
+
+            this.editedItem = undefined;
         },
 
         errorCheck: function (lastName, firstName, email, phone) {

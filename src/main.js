@@ -17,7 +17,11 @@ var app = new Vue(({
     methods: {
         getData: function () {
             var localData = localStorage.getItem('entries');
-            return this.entries = JSON.parse(localData);
+            if(!localData){
+                localStorage.setItem('entries', '[]')
+            }else {
+                return this.entries = JSON.parse(localData);
+            }
 
         },
         postData: function () {

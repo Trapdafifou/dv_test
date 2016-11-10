@@ -61,19 +61,19 @@ var app = new Vue(({
 
         errorCheck: function (lastName, firstName, email, phone) {
             if (!lastName || typeof lastName != "string") {
-                alert('put a string in the input last-name');
+                alert('veuillez remplir le champs Nom');
                 return;
             }
             if (!firstName || typeof firstName != "string") {
-                alert('put a string in the input first-name');
+                alert('veuillez remplir le champs Prénom');
                 return;
             }
             if (!email || typeof email != "string") {
-                alert('put a string in the input email');
+                alert('veuillez remplir le champs Mail');
                 return;
             }
             if (!phone || typeof phone != "string") {
-                alert('put a string in the input phone');
+                alert('veuillez remplir le champs Téléphone');
                 return;
             }
             else {

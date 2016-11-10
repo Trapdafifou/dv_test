@@ -1,0 +1,28 @@
+.form-inline {
+    border: 1px solid #bfbfbf;
+    border-radius: 4px;
+    padding:10px;
+}
+h1{
+    text-align: center;
+}
+div {
+    padding:20px;
+}
+.entrie-holder {
+    color: #FFFFFF;
+    margin:20px auto;
+    width:100%;
+    border: 1px solid #bfbfbf;
+    background: #3f5055;
+    border-radius:4px;
+    padding:20px;
+}
+.entrie-holder ul{
+    border-bottom: 1px solid #FFFFFF;
+    padding:10px;
+}
+
+.entrie-holder ul li input {
+    color: #000;
+}

@@ -3,38 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="src/style.css">
     <title>Title</title>
 </head>
-<body id="app">
-<div>
-    <form class="form-inline col-md-8 col-md-offset-2" action="">
-        <div class="form-group">
-            <label for="last-name">nom</label>
-            <input id="last-name" type="text" placeholder="ex: Trump">
-        </div>
-        <div class="form-group">
-            <label for="first-name">prénom</label>
-            <input id="first-name" type="text" placeholder="ex: Donald">
-        </div>
-        <div class="form-group">
-            <label for="email">e-mail</label>
-            <input id="email" type="email" placeholder="ex: toto@foobar.com">
-        </div>
-        <div class="form-group">
-            <label for="phone">Tél</label>
-            <input id="phone" type="text" placeholder="ex: 0123456789">
-        </div>
-        <button class="btn btn-success">Valider</button>
-    </form>
-</div>
-<div class="container-fluid col-md-8 col-md-offset-2">
-    <ul class="list-inline" v-for="entrie in entries">
-        <li>{{entrie.firstName}}</li>
-        <li>{{entrie.lastName}}</li>
-        <li>{{entrie.email}}</li>
-        <li>{{entrie.phone}}</li>
-        <li><button class="btn btn-default">X</button></li>
-    </ul>
+<body>
+<h1>Annuaire</h1>
+<div id="app">
+    <div>
+        <form class="form-inline col-md-8 col-md-offset-2"
+              v-on:submit.prevent="errorCheck(lastName, firstName, email, phone)">
+            <div class="form-group">
+                <label for="last-name">nom</label>
+                <input id="last-name" type="text" placeholder="ex: Trump" v-model="lastName">
+            </div>
+            <div class="form-group">
+                <label for="first-name">prénom</label>
+                <input id="first-name" type="text" placeholder="ex: Donald" v-model="firstName">
+            </div>
+            <div class="form-group">
+                <label for="email">e-mail</label>
+                <input id="email" type="email" placeholder="ex: toto@foobar.com" v-model="email">
+            </div>
+            <div class="form-group">
+                <label for="phone">Tél</label>
+                <input id="phone" type="text" placeholder="ex: 0123456789" v-model="phone">
+            </div>
+            <button class="btn btn-success">Valider</button>
+        </form>
+    </div>
+
+    <div class="container-fluid col-md-8 col-md-offset-2 entrie-holder">
+        <ul class="list-inline" v-for="(entrie, item) in entries">
+            <li v-if="editedItem == item">
+                <div>
+                    <form class="form-inline col-md-8 col-md-offset-2"
+                          v-on:submit.prevent="updateMode()">
+                        <div class="form-group">
+                            <label for="last-name">nom</label>
+                            <input id="last-name" type="text" placeholder="ex: Trump" v-model="lastName">
+                        </div>
+                        <div class="form-group">
+                            <label for="first-name">prénom</label>
+                            <input id="first-name" type="text" placeholder="ex: Donald" v-model="firstName">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">e-mail</label>
+                            <input id="email" type="email" placeholder="ex: toto@foobar.com" v-model="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Tél</label>
+                            <input id="phone" type="text" placeholder="ex: 0123456789" v-model="phone">
+                        </div>
+                        <div class="form-group ">
+                            <button class="btn btn-default glyphicon glyphicon-remove"
+                                    v-on:click="cancelUpdate(item)"></button>
+                            <button class="btn btn-default glyphicon glyphicon-ok"
+                                    v-on:click="updateData(item)"></button>
+                        </div>
+                    </form>
+                </div>
+            </li>
+            <li v-if="editedItem != item">{{item +" "}}{{entrie.firstName}}</li>
+            <li v-if="editedItem != item">{{entrie.lastName}}</li>
+            <li v-if="editedItem != item">{{entrie.email}}</li>
+            <li v-if="editedItem != item">{{entrie.phone}}</li>
+            <li v-if="editedItem != item">
+                <button class="btn btn-default glyphicon glyphicon-cog" v-on:click="updateMode(item)"></button>
+                <button class="btn btn-default glyphicon glyphicon-remove" v-on:click="deleteData(item)"></button>
+            </li>
+        </ul>
+    </div>
 </div>
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 <script src="src/main.js"></script>

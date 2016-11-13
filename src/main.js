@@ -44,8 +44,6 @@ var app = new Vue(({
         },
         updateData: function (item) {
 
-
-
             this.entries[item] = {
                 lastName: this.lastName,
                 firstName: this.firstName,
@@ -53,6 +51,8 @@ var app = new Vue(({
                 phone: this.phone,
             };
 
+            console.log('toto');
+            this.editedItem = undefined;
             this.postData();
 
             this.lastName = '';
@@ -61,7 +61,6 @@ var app = new Vue(({
             this.phone = '';
         },
         cancelUpdate(item){
-            ;
             this.entries[item] = this.cachedItem;
 
             this.editedItem = undefined;
@@ -99,7 +98,7 @@ var app = new Vue(({
         createEntrie: function (item) {
             this.entries.push(item);
 
-            this.postData(item)
+            this.postData()
 
             this.lastName = '';
             this.firstName = '';
